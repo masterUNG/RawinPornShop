@@ -268,6 +268,18 @@ class _SearchProductState extends State<SearchProduct> {
     try {
       var result = await BarcodeScanner.scan();
       print('result ================ ${result.rawContent}');
+
+      String qrCode = result.rawContent;
+
+      String url1 = 'http://210.86.171.110:89/webapi3/api/barcode?name=$qrCode';
+      await Dio().get(url1).then((value) {
+        print('value ===========>>>> $value');
+
+        for (var map in value.data) {
+          String codeProduct = map['Code'];
+          print('codeProduct =====>>> $codeProduct');
+        }
+      });
     } catch (e) {}
   }
 }

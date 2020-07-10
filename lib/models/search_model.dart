@@ -7,6 +7,9 @@ class SearchModel {
   String catName;
   List<PLs> pLs;
   String pic1;
+  String pic2;
+  String pic3;
+  String pic4;
 
   SearchModel(
       {this.id,
@@ -16,7 +19,10 @@ class SearchModel {
       this.catCode,
       this.catName,
       this.pLs,
-      this.pic1});
+      this.pic1,
+      this.pic2,
+      this.pic3,
+      this.pic4});
 
   SearchModel.fromJson(Map<String, dynamic> json) {
     id = json['Id'];
@@ -32,6 +38,9 @@ class SearchModel {
       });
     }
     pic1 = json['Pic1'];
+    pic2 = json['Pic2'];
+    pic3 = json['Pic3'];
+    pic4 = json['Pic4'];
   }
 
   Map<String, dynamic> toJson() {
@@ -46,6 +55,9 @@ class SearchModel {
       data['PLs'] = this.pLs.map((v) => v.toJson()).toList();
     }
     data['Pic1'] = this.pic1;
+    data['Pic2'] = this.pic2;
+    data['Pic3'] = this.pic3;
+    data['Pic4'] = this.pic4;
     return data;
   }
 }
@@ -77,4 +89,3 @@ class PLs {
     return data;
   }
 }
-
