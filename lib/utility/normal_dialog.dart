@@ -11,10 +11,12 @@ Future<Null> normalDialog(BuildContext context, String title) async {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
-            title,
-            style: GoogleFonts.charmonman(
-              textStyle: TextStyle(color: Colors.blue),
+          Container(width: 200,
+            child: Text(
+              title,
+              style: GoogleFonts.charmonman(
+                textStyle: TextStyle(color: Colors.blue),
+              ),
             ),
           ),
         ],

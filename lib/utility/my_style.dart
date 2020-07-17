@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MyStyel {
+
+  Widget showProgress(){
+    return Center(child: CircularProgressIndicator(),);
+  }
+
   TextStyle titleH2() {
     return TextStyle(
       fontSize: 16.0,

@@ -20,6 +20,7 @@ class _SearchProductState extends State<SearchProduct> {
   int amountSearch = 20;
   int start = 1;
   bool lazyLoad = true;
+  bool barCodeBool = false;
 
   ScrollController scrollController = ScrollController();
 
@@ -87,6 +88,7 @@ class _SearchProductState extends State<SearchProduct> {
                   ? mySizeBox()
                   : Center(child: Text('ไม่มีคำ $search ในฐานข้อมูล')),
           myContent(),
+          barCodeBool ? MyStyel().showProgress() : mySizeBox(),
         ],
       )),
     );
@@ -271,13 +273,33 @@ class _SearchProductState extends State<SearchProduct> {
 
       String qrCode = result.rawContent;
 
-      String url1 = 'http://210.86.171.110:89/webapi3/api/barcode?name=$qrCode';
+      if (qrCode != null) {
+        setState(() {
+          barCodeBool = true;
+        });
+      }
+      String url1 =
+          'http://210.86.171.110:89/webapi3/api/limit?name=$qrCode&start=1&end=10';
       await Dio().get(url1).then((value) {
-        print('value ===========>>>> $value');
+        // print('value ===========>>>> $value');
 
-        for (var map in value.data) {
-          String codeProduct = map['Code'];
-          print('codeProduct =====>>> $codeProduct');
+        setState(() {
+          barCodeBool = false;
+        });
+
+        if (value.toString() == '[]') {
+          normalDialog(context, 'ไม่มี BarCode $qrCode ใน ฐานข้อมูลของเรา');
+        } else {
+          var result = value.data;
+          for (var map in result) {
+            SearchModel searchModel = SearchModel.fromJson(map);
+            MaterialPageRoute route = MaterialPageRoute(
+              builder: (context) => DetailProduct(
+                searchModel: searchModel,
+              ),
+            );
+            Navigator.push(context, route);
+          }
         }
       });
     } catch (e) {}
