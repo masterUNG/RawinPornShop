@@ -37,6 +37,7 @@ class SearchModel {
         pLs.add(new PLs.fromJson(v));
       });
     }
+
     pic1 = json['Pic1'];
     pic2 = json['Pic2'];
     pic3 = json['Pic3'];
