@@ -34,6 +34,13 @@ class MyStyel {
     );
   }
 
+  TextStyle titleH3White() {
+    return TextStyle(color: Colors.white,
+      fontSize: 14.0,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
   TextStyle titleH2white() {
     return TextStyle(
       fontSize: 18.0,

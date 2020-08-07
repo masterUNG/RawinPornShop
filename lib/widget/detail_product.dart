@@ -74,14 +74,38 @@ class _DetailProductState extends State<DetailProduct> {
 
   Widget buildTabHost() {
     List<Widget> widgets = [Latkabung(), Euamp(), Nongjok(), Hunjakai()];
+    List<Widget> tabWidgets = [
+      Text('ลาดกะบัง'),
+      Text('ตลาดเอี่ยม'),
+      Text('หน่องจอก'),
+      Text('หัวจะเข้')
+    ];
 
     return Container(
-      child: Text('แสดงสาขา'),
+      height: 300,
+      child: DefaultTabController(
+        length: widgets.length,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            // title: Text('สาขา', style: MyStyel().titleH3(),),
+            leading: SizedBox(),
+            bottom: TabBar(
+              tabs: tabWidgets,
+              labelColor: Colors.blue.shade900,
+              indicatorColor: Colors.blue,
+              indicatorWeight: 6,
+            ),
+          ),
+          body: TabBarView(children: widgets),
+        ),
+      ),
     );
   }
 
   Widget buildText(BuildContext context, String string, String string2) {
     return Card(
+      color: Colors.orange.shade200,
       child: Container(
         padding: EdgeInsets.all(8),
         width: MediaQuery.of(context).size.width * 0.8,
@@ -99,7 +123,7 @@ class _DetailProductState extends State<DetailProduct> {
             Row(
               children: [
                 Container(
-                  width: 150,
+                  width: MediaQuery.of(context).size.width * 0.8 - 20,
                   child: Text(
                     string2,
                     style: TextStyle(color: Colors.blue.shade700),
@@ -122,28 +146,28 @@ class _DetailProductState extends State<DetailProduct> {
           children: <Widget>[
             Container(
               height: 35,
-              decoration: BoxDecoration(color: Colors.grey.shade300),
+              decoration: BoxDecoration(color: Colors.purple.shade700),
               child: Row(
                 children: <Widget>[
                   Expanded(
                     flex: 2,
                     child: Text(
                       'BarCode',
-                      style: MyStyel().titleH3(),
+                      style: MyStyel().titleH3White(),
                     ),
                   ),
                   Expanded(
                     flex: 1,
                     child: Text(
                       'หน่วยนับ',
-                      style: MyStyel().titleH3(),
+                      style: MyStyel().titleH3White(),
                     ),
                   ),
                   Expanded(
                     flex: 1,
                     child: Text(
                       'ราคา',
-                      style: MyStyel().titleH3(),
+                      style: MyStyel().titleH3White(),
                     ),
                   ),
                 ],
