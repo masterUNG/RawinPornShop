@@ -6,6 +6,10 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:intl/intl.dart';
 import 'package:rawinpornshop/models/search_model.dart';
 import 'package:rawinpornshop/utility/my_style.dart';
+import 'package:rawinpornshop/widget/euamp.dart';
+import 'package:rawinpornshop/widget/hunjakai.dart';
+import 'package:rawinpornshop/widget/latkabung.dart';
+import 'package:rawinpornshop/widget/nongjok.dart';
 
 class DetailProduct extends StatefulWidget {
   final SearchModel searchModel;
@@ -60,27 +64,42 @@ class _DetailProductState extends State<DetailProduct> {
             showListPLs(),
             MyStyel().mySizedBox16(),
             showPicture(),
+            MyStyel().mySizedBox16(),
+            buildTabHost(),
           ],
         ),
       ),
     );
   }
 
+  Widget buildTabHost() {
+    List<Widget> widgets = [Latkabung(), Euamp(), Nongjok(), Hunjakai()];
+
+    return Container(
+      child: Text('แสดงสาขา'),
+    );
+  }
+
   Widget buildText(BuildContext context, String string, String string2) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Card(
-          child: Container(
-            padding: EdgeInsets.all(8),
-            width: MediaQuery.of(context).size.width * 0.8,
-            child: Row(mainAxisSize: MainAxisSize.min,
+    return Card(
+      child: Container(
+        padding: EdgeInsets.all(8),
+        width: MediaQuery.of(context).size.width * 0.8,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Row(
               children: [
                 Text(
                   string,
                   style: TextStyle(color: Colors.red),
-                ),Text(' : '),
-                Container(width: 100,
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Container(
+                  width: 150,
                   child: Text(
                     string2,
                     style: TextStyle(color: Colors.blue.shade700),
@@ -88,9 +107,9 @@ class _DetailProductState extends State<DetailProduct> {
                 ),
               ],
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
