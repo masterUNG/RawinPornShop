@@ -1,11 +1,16 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:barcode_scan/barcode_scan.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:fontisto_flutter/fontisto_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:rawinpornshop/models/search_model.dart';
+import 'package:rawinpornshop/utility/my_constant.dart';
 import 'package:rawinpornshop/utility/my_style.dart';
+import 'package:rawinpornshop/utility/normal_dialog.dart';
 import 'package:rawinpornshop/widget/euamp.dart';
 import 'package:rawinpornshop/widget/hunjakai.dart';
 import 'package:rawinpornshop/widget/latkabung.dart';
@@ -21,6 +26,7 @@ class DetailProduct extends StatefulWidget {
 class _DetailProductState extends State<DetailProduct> {
   SearchModel model;
   List<PLs> plss = List();
+  bool statusProcess = false;
 
   @override
   void initState() {
@@ -54,7 +60,9 @@ class _DetailProductState extends State<DetailProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text('รายละเอียด สินค้า'),
+        actions: [barCodeButton()],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -72,6 +80,23 @@ class _DetailProductState extends State<DetailProduct> {
     );
   }
 
+  Widget barCodeButton() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(right: 20),
+          child: IconButton(
+            icon: Icon(Istos.shopping_barcode),
+            onPressed: () {
+              qrThread();
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget buildTabHost() {
     List<Widget> widgets = [Latkabung(), Euamp(), Nongjok(), Hunjakai()];
     List<Widget> tabWidgets = [
@@ -82,7 +107,7 @@ class _DetailProductState extends State<DetailProduct> {
     ];
 
     return Container(
-      height: 300,
+      height: 600,
       child: DefaultTabController(
         length: widgets.length,
         child: Scaffold(
@@ -153,7 +178,7 @@ class _DetailProductState extends State<DetailProduct> {
           children: <Widget>[
             Container(
               height: 35,
-              decoration: BoxDecoration(color: Colors.purple.shade700),
+              decoration: BoxDecoration(color: Colors.orange.shade700),
               child: Row(
                 children: <Widget>[
                   Expanded(
@@ -247,5 +272,28 @@ class _DetailProductState extends State<DetailProduct> {
         // control: SwiperControl(),
       ),
     );
+  }
+
+  Future<Null> qrThread() async {
+    try {
+      var object = await BarcodeScanner.scan();
+      String qrCode = object.rawContent;
+      if (qrCode.isNotEmpty) {
+        String url =
+            '${MyConstant().domain}/webapi3/api/limit?name=$qrCode&start=1&end=10';
+        await Dio().get(url).then((value) {
+          if (value.toString() == '[]') {
+            normalDialog(context, 'ไม่มี QRcode นี่ใน ฐานข้อมูลของเรา');
+          } else {
+            for (var map in value.data) {
+              SearchModel searchModel = SearchModel.fromJson(map);
+              setState(() {
+                model = searchModel;
+              });
+            }
+          }
+        });
+      }
+    } catch (e) {}
   }
 }

@@ -10,7 +10,7 @@ class _LatkabungState extends State<Latkabung> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('This is Latkabung'),
+      body: Text('This is Latkabung 123'),
     );
   }
 }
