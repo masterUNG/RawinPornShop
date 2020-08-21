@@ -75,7 +75,7 @@ class _DetailProductState extends State<DetailProduct> {
   Widget buildTabHost() {
     List<Widget> widgets = [Latkabung(), Euamp(), Nongjok(), Hunjakai()];
     List<Widget> tabWidgets = [
-      Text('ลาดกะบัง'),
+      buildText1(),
       Text('ตลาดเอี่ยม'),
       Text('หน่องจอก'),
       Text('หัวจะเข้')
@@ -102,6 +102,13 @@ class _DetailProductState extends State<DetailProduct> {
       ),
     );
   }
+
+  Widget buildText1() => Column(
+        children: [
+          Icon(Icons.card_travel),
+          Text('ลาดกะบัง'),
+        ],
+      );
 
   Widget buildText(BuildContext context, String string, String string2) {
     return Card(
