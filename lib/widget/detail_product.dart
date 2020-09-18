@@ -60,7 +60,7 @@ class _DetailProductState extends State<DetailProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('รายละเอียด สินค้า'),
+      appBar: AppBar(title: Text('สินค้า Rawinporn'),
         actions: [barCodeButton()],
       ),
       body: SingleChildScrollView(
@@ -98,7 +98,7 @@ class _DetailProductState extends State<DetailProduct> {
   }
 
   Widget buildTabHost() {
-    List<Widget> widgets = [Latkabung(), Euamp(), Nongjok(), Hunjakai()];
+    List<Widget> widgets = [Latkabung(searchModel: model,), Euamp(), Nongjok(), Hunjakai()];
     List<Widget> tabWidgets = [
       buildText1(),
       Text('ตลาดเอี่ยม'),
