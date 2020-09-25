@@ -11,10 +11,7 @@ import 'package:rawinpornshop/models/search_model.dart';
 import 'package:rawinpornshop/utility/my_constant.dart';
 import 'package:rawinpornshop/utility/my_style.dart';
 import 'package:rawinpornshop/utility/normal_dialog.dart';
-import 'package:rawinpornshop/widget/euamp.dart';
-import 'package:rawinpornshop/widget/hunjakai.dart';
-import 'package:rawinpornshop/widget/latkabung.dart';
-import 'package:rawinpornshop/widget/nongjok.dart';
+import 'package:rawinpornshop/widget/product_mis.dart';
 
 class DetailProduct extends StatefulWidget {
   final SearchModel searchModel;
@@ -60,7 +57,8 @@ class _DetailProductState extends State<DetailProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('สินค้า Rawinporn'),
+      appBar: AppBar(
+        title: Text('สินค้า Rawinporn'),
         actions: [barCodeButton()],
       ),
       body: SingleChildScrollView(
@@ -98,40 +96,52 @@ class _DetailProductState extends State<DetailProduct> {
   }
 
   Widget buildTabHost() {
-    List<Widget> widgets = [Latkabung(searchModel: model,), Euamp(), Nongjok(), Hunjakai()];
+    List<Widget> widgets = [
+      ProductMis(
+        searchModel: model,
+        whid: MyConstant().whidLatkabang,
+      ),
+      ProductMis(
+        searchModel: model,
+        whid: MyConstant().whidEuamp,
+      ),
+      ProductMis(
+        searchModel: model,
+        whid: MyConstant().whidNongjok,
+      ),
+      ProductMis(
+        searchModel: model,
+        whid: MyConstant().whidHunjakai,
+      )
+    ];
     List<Widget> tabWidgets = [
-      buildText1(),
-      Text('ตลาดเอี่ยม'),
-      Text('หน่องจอก'),
-      Text('หัวจะเข้')
+      buildText1('ลาดกะบัง', Icons.business),
+      buildText1('ตลาดเอี่ยม', Icons.contact_mail),
+      buildText1('หน่องจอก', Icons.access_alarms),
+      buildText1('หัวจะเข้', Icons.font_download)
     ];
 
     return Container(
-      height: 600,
+      height: 400,
       child: DefaultTabController(
         length: widgets.length,
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            // title: Text('สาขา', style: MyStyel().titleH3(),),
-            leading: SizedBox(),
-            bottom: TabBar(
+          appBar: TabBar(
               tabs: tabWidgets,
               labelColor: Colors.blue.shade900,
               indicatorColor: Colors.blue,
-              indicatorWeight: 6,
+              // indicatorWeight: 6,
             ),
-          ),
           body: TabBarView(children: widgets),
         ),
       ),
     );
   }
 
-  Widget buildText1() => Column(
+  Widget buildText1(String string, IconData icons) => Column(
         children: [
-          Icon(Icons.card_travel),
-          Text('ลาดกะบัง'),
+          Icon(icons),
+          Text(string),
         ],
       );
 

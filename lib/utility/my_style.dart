@@ -9,7 +9,10 @@ class MyStyel {
               top: 8,
               bottom: 6,
             ),
-            child: Text(string, style: titleH2(),),
+            child: Text(
+              string,
+              style: titleH2(),
+            ),
           ),
         ],
       );
@@ -27,6 +30,14 @@ class MyStyel {
     );
   }
 
+  TextStyle titleH2Blue() {
+    return TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.bold,
+      color: Colors.blue.shade900,
+    );
+  }
+
   TextStyle titleH3() {
     return TextStyle(
       fontSize: 14.0,
@@ -35,7 +46,8 @@ class MyStyel {
   }
 
   TextStyle titleH3White() {
-    return TextStyle(color: Colors.white,
+    return TextStyle(
+      color: Colors.white,
       fontSize: 14.0,
       fontWeight: FontWeight.bold,
     );
@@ -58,6 +70,22 @@ class MyStyel {
   SizedBox mySizedBox16() {
     return SizedBox(
       height: 16,
+    );
+  }
+
+  Widget showProductMIS(String myTitle, String content, Color color) {
+    return ListTile(
+      leading: Text(
+        myTitle,
+        style: TextStyle(
+          fontSize: 16,
+          color: Colors.black87,fontWeight: FontWeight.bold,
+        ),
+      ),
+      title: Text(
+        content,
+        style: TextStyle(fontSize: 16, color: color, fontWeight: FontWeight.bold),
+      ),
     );
   }
 
