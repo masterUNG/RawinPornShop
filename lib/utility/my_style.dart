@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MyStyel {
+
+  Color primaryColor = Color(0xfff17930);
+  Color darkColor = Color(0xff1073b8);
+
   Widget buildTitleH2(String string) => Row(
         children: <Widget>[
           Padding(
@@ -79,12 +83,14 @@ class MyStyel {
         myTitle,
         style: TextStyle(
           fontSize: 16,
-          color: Colors.black87,fontWeight: FontWeight.bold,
+          color: Colors.black87,
+          fontWeight: FontWeight.bold,
         ),
       ),
       title: Text(
         content,
-        style: TextStyle(fontSize: 16, color: color, fontWeight: FontWeight.bold),
+        style:
+            TextStyle(fontSize: 16, color: color, fontWeight: FontWeight.bold),
       ),
     );
   }

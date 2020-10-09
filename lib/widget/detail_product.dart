@@ -127,11 +127,12 @@ class _DetailProductState extends State<DetailProduct> {
         length: widgets.length,
         child: Scaffold(
           appBar: TabBar(
-              tabs: tabWidgets,
-              labelColor: Colors.blue.shade900,
-              indicatorColor: Colors.blue,
-              // indicatorWeight: 6,
-            ),
+            isScrollable: true,
+            tabs: tabWidgets,
+            labelColor: Colors.blue.shade900,
+            indicatorColor: Colors.blue,
+            // indicatorWeight: 6,
+          ),
           body: TabBarView(children: widgets),
         ),
       ),
@@ -141,7 +142,7 @@ class _DetailProductState extends State<DetailProduct> {
   Widget buildText1(String string, IconData icons) => Column(
         children: [
           Icon(icons),
-          Text(string),
+          Text(string, style: TextStyle(fontSize: 14),),
         ],
       );
 
