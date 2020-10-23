@@ -4,7 +4,9 @@ import 'package:rawinpornshop/models/user_authen_model.dart';
 import 'package:rawinpornshop/utility/my_constant.dart';
 import 'package:rawinpornshop/utility/my_style.dart';
 import 'package:rawinpornshop/utility/normal_dialog.dart';
+import 'package:rawinpornshop/widget/my_service.dart';
 import 'package:rawinpornshop/widget/search_product.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Authen extends StatefulWidget {
   @override
@@ -14,6 +16,37 @@ class Authen extends StatefulWidget {
 class _AuthenState extends State<Authen> {
   String user, password;
   bool redEye = true;
+
+  TextEditingController textEditController = TextEditingController();
+  FocusNode focusNote = FocusNode();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    focusNote.addListener(() {
+      if (focusNote.hasFocus) {
+        print('You tap TextFormField');
+      }
+    });
+
+    readUser();
+  }
+
+  Future<Null> readUser() async {
+    try {
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      var result = preferences.getString('User');
+
+      if (result != null) {
+        setState(() {
+          user = result.toString();
+          print('user readUser ==>> $user');
+        });
+      }
+    } catch (e) {}
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +97,7 @@ class _AuthenState extends State<Authen> {
     return Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-          builder: (context) => SearchProduct(),
+          builder: (context) => MyService(),
         ),
         (route) => false);
   }
@@ -78,6 +111,10 @@ class _AuthenState extends State<Authen> {
       width: 250,
       height: 40,
       child: TextFormField(
+        // focusNode: focusNote,
+        // controller: textEditController,
+        key: Key(user == null ? '' : user ),
+        initialValue: user == null ? '' : user,
         onChanged: (value) => user = value.trim(),
         decoration: InputDecoration(
           prefixIcon: Icon(Icons.account_box),
@@ -143,7 +180,8 @@ class _AuthenState extends State<Authen> {
             print('passwordKey2 ==>> $passwordKey2');
 
             if (passwordKey == passwordKey2) {
-              routeToService(context);
+              // routeToService(context);
+              saveUser();
             } else {
               normalDialog(context, 'Password ไม่ถูกต้อง กรุณาลองใหม่ คะ');
             }
@@ -151,5 +189,11 @@ class _AuthenState extends State<Authen> {
         }
       }
     });
+  }
+
+  Future<Null> saveUser() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('User', user);
+    routeToService(context);
   }
 }
