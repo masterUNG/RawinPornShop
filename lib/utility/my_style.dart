@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class MyStyel {
 
-  Color primaryColor = Color(0xfff17930);
-  Color darkColor = Color(0xff1073b8);
+  Color primaryColor = Color(0xffff8f00);
+  Color darkColor = Color(0xffc56000);
 
   Widget buildTitleH2(String string) => Row(
         children: <Widget>[
