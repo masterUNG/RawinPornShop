@@ -48,7 +48,8 @@ class _MyServiceState extends State<MyService> {
           appBar: AppBar(
             backgroundColor: MyStyel().primaryColor,
             title: Text('Name Login'),
-            bottom: TabBar(indicator: BoxDecoration(color: Colors.white24),
+            bottom: TabBar(
+              indicator: BoxDecoration(color: Colors.white24),
               tabs: tabWidgets,
               indicatorWeight: 4,
               labelColor: Colors.white,

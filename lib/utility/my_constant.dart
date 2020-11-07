@@ -5,6 +5,10 @@ class MyConstant {
   String whidNongjok = '9';
   String whidHunjakai = '10';
 
+  String name1 = 'aaa';
+  String name2 = 'aaa';
+  String name3 = 'Aaa';
+
   List<String> menuFrontEnds = ['Search', 'Menu2', 'Menu3', 'Menu4', 'Menu5'];
   List<String> imageMenuFrontEnds = [
     'icon0.png',
@@ -15,5 +19,6 @@ class MyConstant {
     'icon5.png'
   ];
 
+  String name4 = 'aabaaa';
   MyConstant();
 }
