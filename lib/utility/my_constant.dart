@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:rawinpornshop/widget/search_product.dart';
+
 class MyConstant {
   String domain = 'http://210.86.171.110:89';
   String whidLatkabang = '7';
@@ -18,6 +21,7 @@ class MyConstant {
     'icon4.png',
     'icon5.png'
   ];
+  List<Widget> routeWidgets = [SearchProduct()];
 
   String name4 = 'aabaaa';
   MyConstant();

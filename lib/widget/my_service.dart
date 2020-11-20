@@ -19,7 +19,6 @@ class _MyServiceState extends State<MyService> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
     createWidgets();
   }
 
@@ -31,6 +30,7 @@ class _MyServiceState extends State<MyService> {
           Container(
             width: 48,
             child: Image.asset(images[i]),
+            // child: Icon(icons[i]),
           ),
           Text(title),
         ],

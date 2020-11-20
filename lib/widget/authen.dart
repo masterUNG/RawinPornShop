@@ -5,7 +5,6 @@ import 'package:rawinpornshop/utility/my_constant.dart';
 import 'package:rawinpornshop/utility/my_style.dart';
 import 'package:rawinpornshop/utility/normal_dialog.dart';
 import 'package:rawinpornshop/widget/my_service.dart';
-import 'package:rawinpornshop/widget/search_product.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Authen extends StatefulWidget {
