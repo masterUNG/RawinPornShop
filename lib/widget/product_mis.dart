@@ -24,6 +24,9 @@ class _ProductMisState extends State<ProductMis> {
     // TODO: implement initState
     super.initState();
     model = widget.searchModel;
+    if (model != null) {
+      print('data model == ${model.name}');
+    } else {print('model null#############');}
     pid = model.id;
     whid = widget.whid;
 
@@ -36,17 +39,20 @@ class _ProductMisState extends State<ProductMis> {
       body: productMISmodel == null
           ? MyStyel().showProgress()
           : Center(
-              child: Column(
+              child: model == null ? Text('No Data') : Column(
                 children: [
-                  MyStyel().showProductMIS('Stock คงเหลือ =', productMISmodel.stkWh, Colors.purple.shade700),
-                  MyStyel().showProductMIS('วันที่รับเข้าล่าสุด =', productMISmodel.reciveLastQty, Colors.purple.shade700),
-                  MyStyel().showProductMIS('จำนวนรับเข้า =', productMISmodel.reciveLastQty, Colors.purple.shade700),
-                  MyStyel().showProductMIS('ขายหลังรับเข้าล่าสุด =', productMISmodel.saleAfterRC, Colors.purple.shade700),
-                  MyStyel().showProductMIS('วันที่ขายล่าสุด =', productMISmodel.saleLastDate, Colors.purple.shade700),
-                  
-                  
+                  MyStyel().showProductMIS('Stock คงเหลือ =',
+                      productMISmodel.stkWh, Colors.purple.shade700),
+                  MyStyel().showProductMIS('วันที่รับเข้าล่าสุด =',
+                      productMISmodel.reciveLastQty, Colors.purple.shade700),
+                  MyStyel().showProductMIS('จำนวนรับเข้า =',
+                      productMISmodel.reciveLastQty, Colors.purple.shade700),
+                  MyStyel().showProductMIS('ขายหลังรับเข้าล่าสุด =',
+                      productMISmodel.saleAfterRC, Colors.purple.shade700),
+                  MyStyel().showProductMIS('วันที่ขายล่าสุด =',
+                      productMISmodel.saleLastDate, Colors.purple.shade700),
                 ],
-              ),
+              ) ,
             ),
     );
   }

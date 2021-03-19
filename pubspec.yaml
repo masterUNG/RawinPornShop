@@ -22,7 +22,7 @@ dependencies:
   barcode_scan: ^3.0.1
   bloc: ^6.1.0
   cupertino_icons: ^0.1.2
-  dio: ^3.0.9
+  dio: ^3.0.10
   flutter_swiper: ^1.1.6
   fontisto_flutter: ^3.0.5
   google_fonts: ^1.1.1
